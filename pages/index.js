@@ -83,14 +83,15 @@ export default function Home() {
     <div className={styles.container}>
 
       <table>
-        <tr>
-          <th>SN</th>
-          <th><button onClick={() => sort('name.first', getSortDirection('name.first'))}>Name
-            <span className={(sortDirectionObject?.column == 'name.first') ? 'active_sorting' : 'not_active_sorting'}>{(sortDirectionObject?.direction == SORT_DIRECTION.asc) ? ' A' : ' D'}</span></button></th>
-          <th><button onClick={() => sort('dob.date', getSortDirection('dob.date'))}>DOB<span className={(sortDirectionObject?.column == 'dob.date') ? 'active_sorting' : 'not_active_sorting'}>{(sortDirectionObject?.direction == SORT_DIRECTION.asc) ? ' A' : ' D'}</span></button></th>
-        </tr>
-
-        <>
+        <thead>
+          <tr>
+            <th>SN</th>
+            <th><button onClick={() => sort('name.first', getSortDirection('name.first'))}>Name
+              <span className={(sortDirectionObject?.column == 'name.first') ? 'active_sorting' : 'not_active_sorting'}>{((sortDirectionObject?.column == 'name.first') && sortDirectionObject?.direction == SORT_DIRECTION.asc) ? ' A' : ' D'}</span></button></th>
+            <th><button onClick={() => sort('dob.date', getSortDirection('dob.date'))}>DOB<span className={(sortDirectionObject?.column == 'dob.date') ? 'active_sorting' : 'not_active_sorting'}>{((sortDirectionObject?.column == 'dob.date') && sortDirectionObject?.direction == SORT_DIRECTION.asc) ? ' A' : ' D'}</span></button></th>
+          </tr>
+        </thead>
+        <tbody>
           {
             sortedDataList?.map((item, index) => {
               return (<tr key={index}>
@@ -103,7 +104,7 @@ export default function Home() {
           }
 
 
-        </>
+        </tbody>
       </table>
 
       <button onClick={() => refreshData()}>Refresh</button>
